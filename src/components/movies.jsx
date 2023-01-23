@@ -26,6 +26,11 @@ class Movies extends Component {
 
         return (
             <div>
+                <p>
+                    There {this.state.movies.length > 1 ? "are" : "is"}{" "}
+                    {this.state.movies.length} movie
+                    {this.state.movies.length > 1 ? "s" : ""} in the database.
+                </p>
                 <button
                     onClick={this.showMovies}
                     className="btn btn-primary btn-sm">
