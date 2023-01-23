@@ -21,6 +21,9 @@ class Movies extends Component {
     };
 
     render() {
+        if (this.state.movies.length === 0)
+            return <p>There are no movies here!</p>;
+
         return (
             <div>
                 <button
@@ -28,6 +31,7 @@ class Movies extends Component {
                     className="btn btn-primary btn-sm">
                     Show me what you got!
                 </button>
+
                 <table className="table">
                     <thead>
                         <tr>
