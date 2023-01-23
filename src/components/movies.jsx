@@ -7,7 +7,9 @@ class Movies extends Component {
     };
 
     handleDelete = (movie) => {
-        console.log(`Deleted Movie: ${this.state.movies.title} `);
+        let movies = this.state.movies.filter((mov) => mov._id !== movie._id);
+        this.setState({ movies });
+        console.log(`Deleted Movie: ${movie.title} `);
     };
 
     showMovies = () => {
@@ -37,14 +39,14 @@ class Movies extends Component {
                     </thead>
                     <tbody>
                         {this.state.movies.map((mov) => (
-                            <tr>
+                            <tr key={mov._id}>
                                 <td>{mov.title}</td>
                                 <td>{mov.genre.name}</td>
                                 <td>{mov.numberInStock}</td>
                                 <td>{mov.dailyRentalRate}</td>
                                 <td>
                                     <button
-                                        onClick={this.handleDelete}
+                                        onClick={() => this.handleDelete(mov)}
                                         className="btn btn-danger btn-sm">
                                         Delete
                                     </button>
