@@ -9,6 +9,7 @@ class Counters extends Component {
             { id: 4, value: 14 },
         ],
     };
+
     render() {
         return (
             <div>
