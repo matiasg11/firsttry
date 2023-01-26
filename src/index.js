@@ -6,14 +6,15 @@ import Movies from "./components/movies";
 import reportWebVitals from "./reportWebVitals";
 import Counter from "./components/counter";
 import Counters from "./components/counters.jsx";
+import NavBar from "./components/navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
-        <Counters />
-    </React.StrictMode>
+    <React.Fragment>
+        <App />
+    </React.Fragment>
 );
 
 // ReactDOM.render(<Movies />, document.getElementById("root")); Old way to do it
