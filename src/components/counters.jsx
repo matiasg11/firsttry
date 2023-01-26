@@ -25,6 +25,15 @@ class Counters extends Component {
         this.setState({ counters });
     };
 
+    handleDecrement = (counter) => {
+        console.log("Decrement Clicked");
+        const counters = [...this.state.counters];
+        const index = counters.indexOf(counter);
+        counters[index] = { ...counter };
+        counters[index].value--;
+        this.setState({ counters });
+    };
+
     handleReset = () => {
         const counters = this.state.counters.map((a) => (a.value = 0));
         this.setState({ counters });
@@ -43,6 +52,7 @@ class Counters extends Component {
                         key={counter.id} //Used internally by react
                         onDelete={this.handleDelete}
                         onIncrement={this.handleIncrement}
+                        onDecrement={this.handleDecrement}
                         counter={counter}
                     />
                 ))}
