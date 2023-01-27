@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Counters from "./components/counters";
+import Movies from "./components/movies";
 import NavBar from "./components/navbar";
 
 class App extends Component {
@@ -57,6 +58,7 @@ class App extends Component {
                         onDelete={this.handleDelete}
                         onDecrement={this.handleDecrement}
                     />
+                    <Movies />
                 </main>
             </React.Fragment>
         );

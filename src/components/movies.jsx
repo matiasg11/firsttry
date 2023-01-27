@@ -12,6 +12,17 @@ class Movies extends Component {
         console.log(`Deleted Movie: ${movie.title} `);
     };
 
+    handleLike = (movie) => {
+        if (movie.liked) {
+            movie.liked = false;
+        } else {
+            movie.liked = true;
+        }
+        let movies = this.state.movies.filter((mov) => mov._id !== movie._id);
+        this.setState({ movies });
+        console.log(`Liked Movie: ${movie.title} `);
+    };
+
     showMovies = () => {
         let array = this.state.movies.map((mov) => (
             <li key={mov._id}>{mov.title}</li>
@@ -21,6 +32,12 @@ class Movies extends Component {
     };
 
     render() {
+        let movies = this.state.movies;
+        for (let mov in movies) {
+            mov.liked = false;
+        }
+        this.setState({ movies });
+
         if (this.state.movies.length === 0)
             return <p>There are no movies here!</p>;
 
@@ -53,6 +70,13 @@ class Movies extends Component {
                                 <td>{mov.genre.name}</td>
                                 <td>{mov.numberInStock}</td>
                                 <td>{mov.dailyRentalRate}</td>
+                                <td>
+                                    <button
+                                        onClick={() => this.handleLike(mov)}
+                                        className="btn btn-danger btn-sm">
+                                        Like!
+                                    </button>
+                                </td>
                                 <td>
                                     <button
                                         onClick={() => this.handleDelete(mov)}
