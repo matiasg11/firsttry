@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
+import Like from "./common/like";
 
 class Movies extends Component {
     state = {
@@ -13,14 +14,25 @@ class Movies extends Component {
     };
 
     handleLike = (movie) => {
-        if (movie.liked) {
-            movie.liked = false;
-        } else {
-            movie.liked = true;
-        }
-        let movies = this.state.movies.filter((mov) => mov._id !== movie._id);
+        const movies = [...this.state.movies];
+        const idx = movies.indexOf(movie);
+        movies[idx] = { ...movies[idx] };
+        movies[idx].liked = !movies[idx].liked;
         this.setState({ movies });
-        console.log(`Liked Movie: ${movie.title} `);
+
+        //     if (movie.liked) {
+        //         movie.liked = false;
+        //     } else {
+        //         movie.liked = true;
+        //     }
+        //     let movies = this.state.movies.filter((mov) => mov._id !== movie._id);
+        //     this.setState({ movies });
+        //     console.log(`Liked Movie: ${movie.title} `);
+        // let movies = this.state.movies;
+        // for (let mov in movies) {
+        //     mov.liked = false;
+        // }
+        // this.setState({ movies });
     };
 
     showMovies = () => {
@@ -32,12 +44,6 @@ class Movies extends Component {
     };
 
     render() {
-        let movies = this.state.movies;
-        for (let mov in movies) {
-            mov.liked = false;
-        }
-        this.setState({ movies });
-
         if (this.state.movies.length === 0)
             return <p>There are no movies here!</p>;
 
@@ -61,6 +67,8 @@ class Movies extends Component {
                             <th scope="col">Genre</th>
                             <th scope="col">Stock</th>
                             <th scope="col">Rate</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,10 +79,11 @@ class Movies extends Component {
                                 <td>{mov.numberInStock}</td>
                                 <td>{mov.dailyRentalRate}</td>
                                 <td>
-                                    <button
-                                        onClick={() => this.handleLike(mov)}
-                                        className="btn btn-danger btn-sm">
-                                        Like!
+                                    <button className="btn btn-sm">
+                                        <Like
+                                            liked={mov.liked}
+                                            onClick={() => this.handleLike(mov)}
+                                        />
                                     </button>
                                 </td>
                                 <td>
