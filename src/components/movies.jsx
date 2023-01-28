@@ -18,6 +18,7 @@ class Movies extends Component {
         const idx = movies.indexOf(movie);
         movies[idx] = { ...movies[idx] };
         movies[idx].liked = !movies[idx].liked;
+        console.log(movies[idx].title, "(un)liked");
         this.setState({ movies });
 
         //     if (movie.liked) {
@@ -79,12 +80,10 @@ class Movies extends Component {
                                 <td>{mov.numberInStock}</td>
                                 <td>{mov.dailyRentalRate}</td>
                                 <td>
-                                    <button className="btn btn-sm">
-                                        <Like
-                                            liked={mov.liked}
-                                            onClick={() => this.handleLike(mov)}
-                                        />
-                                    </button>
+                                    <Like
+                                        liked={mov.liked}
+                                        onClick={() => this.handleLike(mov)}
+                                    />
                                 </td>
                                 <td>
                                     <button
