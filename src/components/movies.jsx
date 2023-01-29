@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import Like from "./common/like";
 import Pagination from "./common/pagination";
+import { paginate } from "../utilities/paginate";
 
 class Movies extends Component {
     state = {
@@ -14,10 +15,6 @@ class Movies extends Component {
         let movies = this.state.movies.filter((mov) => mov._id !== movie._id);
         this.setState({ movies });
         console.log(`Deleted Movie: ${movie.title} `);
-    };
-
-    handlePageChange = (page) => {
-        this.setState({ currentPage: page });
     };
 
     handleLike = (movie) => {
@@ -51,12 +48,18 @@ class Movies extends Component {
         return array;
     };
 
+    handlePageChange = (page) => {
+        this.setState({ currentPage: page });
+    };
+
     render() {
         const { length: count } = this.state.movies;
-        const { pageSize, currentPage } = this.state;
+        const { pageSize, currentPage, movies: allMovies } = this.state;
 
         if (this.state.movies.length === 0)
             return <p>There are no movies here!</p>;
+
+        const movies = paginate(allMovies, currentPage, pageSize);
 
         return (
             <div>
@@ -83,7 +86,7 @@ class Movies extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.movies.map((mov) => (
+                        {movies.map((mov) => (
                             <tr key={mov._id}>
                                 <td>{mov.title}</td>
                                 <td>{mov.genre.name}</td>
