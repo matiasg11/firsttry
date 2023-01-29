@@ -75,6 +75,8 @@ class Movies extends Component {
                 <div className="col-3">
                     <ListGroup
                         items={this.state.genres}
+                        textProperty="name" //Default props
+                        valueProperty="_id" //Default props
                         onItemSelect={this.handleGenreSelect}></ListGroup>
                 </div>
 
