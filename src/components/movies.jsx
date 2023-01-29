@@ -6,7 +6,7 @@ import Pagination from "./common/pagination";
 class Movies extends Component {
     state = {
         movies: getMovies(),
-        pageSize: 4,
+        pageSize: 10,
     };
 
     handleDelete = (movie) => {
@@ -101,7 +101,7 @@ class Movies extends Component {
                     </tbody>
                 </table>
                 <Pagination
-                    itemsCount={count}
+                    itemsCount={this.state.movies.length}
                     pageSize={this.state.pageSize}
                     onPageChange={this.handlePageChange}
                 />
