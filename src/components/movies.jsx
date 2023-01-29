@@ -10,12 +10,13 @@ class Movies extends Component {
     state = {
         movies: [],
         currentPage: 1,
-        pageSize: 3,
+        pageSize: 2,
         genres: [],
     };
 
     componentDidMount() {
-        this.setState({ movies: getMovies(), genres: getGenres() });
+        const genres = [{ name: "All Genres" }, ...getGenres()];
+        this.setState({ movies: getMovies(), genres: genres });
     }
 
     handleDelete = (movie) => {
@@ -59,16 +60,28 @@ class Movies extends Component {
         this.setState({ currentPage: page });
     };
 
-    handleGenreSelect = (genre) => {};
+    handleGenreSelect = (genre) => {
+        console.log(genre);
+        this.setState({ selectedGenre: genre, currentPage: 1 });
+    };
 
     render() {
         const { length: count } = this.state.movies;
-        const { pageSize, currentPage, movies: allMovies } = this.state;
+        const {
+            pageSize,
+            currentPage,
+            movies: allMovies,
+            selectedGenre,
+        } = this.state;
 
         if (this.state.movies.length === 0)
             return <p>There are no movies here!</p>;
 
-        const movies = paginate(allMovies, currentPage, pageSize);
+        const filtered =
+            selectedGenre && selectedGenre._id
+                ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
+                : allMovies;
+        const movies = paginate(filtered, currentPage, pageSize);
 
         return (
             <div className="row">
@@ -77,15 +90,15 @@ class Movies extends Component {
                         items={this.state.genres}
                         textProperty="name" //Default props
                         valueProperty="_id" //Default props
+                        selectedItem={this.state.selectedGenre}
                         onItemSelect={this.handleGenreSelect}></ListGroup>
                 </div>
 
                 <div className="col">
                     <p>
-                        There {this.state.movies.length > 1 ? "are " : "is "}
-                        {this.state.movies.length} movie
-                        {this.state.movies.length > 1 ? "s" : ""} in the
-                        database.
+                        There {filtered.length > 1 ? "are " : "is "}
+                        {filtered.length} movie
+                        {filtered.length > 1 ? "s" : ""} in the database.
                     </p>
                     <button
                         onClick={this.showMovies}
@@ -131,7 +144,7 @@ class Movies extends Component {
                         </tbody>
                     </table>
                     <Pagination
-                        itemsCount={count}
+                        itemsCount={filtered.length}
                         pageSize={pageSize}
                         currentPage={currentPage}
                         onPageChange={this.handlePageChange}
