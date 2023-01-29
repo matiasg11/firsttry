@@ -6,6 +6,7 @@ import Pagination from "./common/pagination";
 class Movies extends Component {
     state = {
         movies: getMovies(),
+        pageSize: 4,
     };
 
     handleDelete = (movie) => {
@@ -13,6 +14,8 @@ class Movies extends Component {
         this.setState({ movies });
         console.log(`Deleted Movie: ${movie.title} `);
     };
+
+    handlePageChange = () => {};
 
     handleLike = (movie) => {
         const movies = [...this.state.movies];
@@ -97,7 +100,11 @@ class Movies extends Component {
                         ))}
                     </tbody>
                 </table>
-                <Pagination />
+                <Pagination
+                    itemsCount={count}
+                    pageSize={this.state.pageSize}
+                    onPageChange={this.handlePageChange}
+                />
             </div>
         );
     }
