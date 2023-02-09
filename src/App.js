@@ -13,35 +13,6 @@ class App extends Component {
         ],
     };
 
-    handleDelete = (counterId) => {
-        const counters = this.state.counters.filter((a) => a.id !== counterId);
-        console.log("Object with id", counterId, "Deleted");
-        this.setState({ counters });
-    };
-
-    handleIncrement = (counter) => {
-        console.log("Increment Clicked");
-        const counters = [...this.state.counters];
-        const index = counters.indexOf(counter);
-        counters[index] = { ...counter };
-        counters[index].value++;
-        this.setState({ counters });
-    };
-
-    handleDecrement = (counter) => {
-        console.log("Decrement Clicked");
-        const counters = [...this.state.counters];
-        const index = counters.indexOf(counter);
-        counters[index] = { ...counter };
-        counters[index].value--;
-        this.setState({ counters });
-    };
-
-    handleReset = () => {
-        const counters = this.state.counters.map((a) => (a.value = 0));
-        this.setState({ counters });
-    };
-
     render() {
         return (
             <React.Fragment>
@@ -72,3 +43,32 @@ class App extends Component {
 //Click on a movie => go to /movies/id
 //Menues have to be highlighted (Link component switched to NavLink component)
 export default App;
+
+// handleDelete = (counterId) => {
+//     const counters = this.state.counters.filter((a) => a.id !== counterId);
+//     console.log("Object with id", counterId, "Deleted");
+//     this.setState({ counters });
+// };
+
+// handleIncrement = (counter) => {
+//     console.log("Increment Clicked");
+//     const counters = [...this.state.counters];
+//     const index = counters.indexOf(counter);
+//     counters[index] = { ...counter };
+//     counters[index].value++;
+//     this.setState({ counters });
+// };
+
+// handleDecrement = (counter) => {
+//     console.log("Decrement Clicked");
+//     const counters = [...this.state.counters];
+//     const index = counters.indexOf(counter);
+//     counters[index] = { ...counter };
+//     counters[index].value--;
+//     this.setState({ counters });
+// };
+
+// handleReset = () => {
+//     const counters = this.state.counters.map((a) => (a.value = 0));
+//     this.setState({ counters });
+// };
