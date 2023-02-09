@@ -65,4 +65,10 @@ class App extends Component {
     }
 }
 //Now we start with routing
+//Add a NavLink componetn with Movies, Customers and Rentals
+//Customers and Rentals must only show a title
+//If any other route (invalid) => go to not-found
+//If you go to the root, redirected to movies.
+//Click on a movie => go to /movies/id
+//Menues have to be highlighted (Link component switched to NavLink component)
 export default App;
