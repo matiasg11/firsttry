@@ -1,35 +1,25 @@
 import React, { Component } from "react";
-import Counters from "./components/counters";
+import { Route, Routes, Navigate } from "react-router-dom";
+import Rentals from "./components/rentals";
+import Customers from "./components/customers";
 import Movies from "./components/movies";
 import NavBar from "./components/navbar";
+import NotFound from "./components/notFound";
 
 class App extends Component {
-    state = {
-        counters: [
-            { id: 1, value: 11 },
-            { id: 2, value: 12 },
-            { id: 3, value: 13 },
-            { id: 4, value: 14 },
-        ],
-    };
-
     render() {
         return (
             <React.Fragment>
-                {/* <NavBar
-                    totalCounters={
-                        this.state.counters.filter((c) => c.value > 0).length
-                    }
-                /> */}
+                <NavBar />
                 <main className="container">
-                    {/* <Counters
-                        counters={this.state.counters}
-                        onReset={this.handleReset}
-                        onIncrement={this.handleIncrement}
-                        onDelete={this.handleDelete}
-                        onDecrement={this.handleDecrement}
-                    /> */}
-                    <Movies />
+                    <Routes>
+                        <Route path="/movies" element={Movies} />
+                        <Route path="/rentals" element={Rentals}></Route>
+                        <Route path="/customers" element={Customers}></Route>
+                        <Route path="/not-found" element={NotFound}></Route>
+                        <Navigate from="/" exact to="/movies" />
+                        <Navigate to="/not-found" />
+                    </Routes>
                 </main>
             </React.Fragment>
         );
