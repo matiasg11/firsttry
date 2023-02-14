@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Rentals from "./components/rentals";
 import Customers from "./components/customers";
+import MovieForm from "./components/movieForm";
 import Movies from "./components/movies";
 import NavBar from "./components/navbar";
 import NotFound from "./components/notFound";
+import "./App.css";
 
 class App extends Component {
     render() {

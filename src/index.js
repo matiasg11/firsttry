@@ -9,11 +9,9 @@ import "font-awesome/css/font-awesome.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.Fragment>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </React.Fragment>
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
 );
 
 // ReactDOM.render(<Movies />, document.getElementById("root")); Old way to do it
