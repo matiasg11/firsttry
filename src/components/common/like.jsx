@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 //Input: liked => boolean
 //Output: onClick (renders a full or empty heart)
