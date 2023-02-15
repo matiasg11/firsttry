@@ -7,12 +7,17 @@ class LoginForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault(); //Prevents the default behavior which in this case is the submission of the form
 
-        //LEFT AT VIDEO 5. CONTROLLED ELEMENT
-
         //Call the server and then redirect the user to another place
         const username = this.username.current.value;
         console.log("Submitted");
     };
+
+    handleChange = (e) => {
+        const account = { ...this.state.account };
+        account.username = e.currentTarget.value;
+        this.setState({ account });
+    };
+
     render() {
         return (
             <div>
@@ -25,6 +30,8 @@ class LoginForm extends Component {
                             ref={this.username}
                             type="text"
                             className="form-control"
+                            onChange={this.handleChange}
+                            value={this.state.account.username}
                             id="username"
                             placeholder="youremail@emailprovider.com"></input>
                     </div>
