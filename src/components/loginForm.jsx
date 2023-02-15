@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
 class LoginForm extends Component {
-    state = {};
+    state = {
+        account: { username: "", password: "" },
+    };
     handleSubmit = (e) => {
         e.preventDefault(); //Prevents the default behavior which in this case is the submission of the form
+
+        //LEFT AT VIDEO 5. CONTROLLED ELEMENT
 
         //Call the server and then redirect the user to another place
         const username = this.username.current.value;
