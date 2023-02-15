@@ -4,7 +4,9 @@ class LoginForm extends Component {
     state = {};
     handleSubmit = (e) => {
         e.preventDefault(); //Prevents the default behavior which in this case is the submission of the form
+
         //Call the server and then redirect the user to another place
+        const username = this.username.current.value;
         console.log("Submitted");
     };
     render() {
@@ -15,6 +17,8 @@ class LoginForm extends Component {
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input
+                            autoFocus
+                            ref={this.username}
                             type="text"
                             className="form-control"
                             id="username"
