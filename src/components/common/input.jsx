@@ -5,14 +5,15 @@ const Input = ({ name, label, value, onChange }) => {
         <div className="form-group">
             <label htmlFor={name}>{label}</label>
             <input
-                ref={this.username}
+                // ref={this.username}
                 type="text"
                 className="form-control"
                 onChange={onChange}
                 name={name}
                 value={value}
                 id={name}
-                placeholder="youremail@emailprovider.com"></input>
+                // placeholder="youremail@emailprovider.com"
+            ></input>
         </div>
     );
 };
