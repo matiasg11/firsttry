@@ -26,19 +26,6 @@ class LoginForm extends Component {
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input
-                            autoFocus
-                            ref={this.username}
-                            type="text"
-                            className="form-control"
-                            onChange={this.handleChange}
-                            name="username"
-                            value={account.username}
-                            id="username"
-                            placeholder="youremail@emailprovider.com"></input>
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input
                             ref={this.password}
