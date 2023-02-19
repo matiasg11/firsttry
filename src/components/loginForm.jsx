@@ -26,6 +26,7 @@ class LoginForm extends Component {
         e.preventDefault(); //Prevents the default behavior which in this case is the submission of the form
 
         const errors = this.validate();
+        console.log(errors);
         this.setState({ errors });
         if (errors) return;
         //Call the server and then redirect the user to another place
