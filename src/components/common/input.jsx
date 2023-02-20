@@ -11,8 +11,8 @@ const Input = ({ name, label, value, onChange, error }) => {
                 name={name}
                 value={value}
                 id={name}></input>
-            {error && <div className="alert alert-danger">{error}</div>} //If
-            error is truthy, it shows the div.
+            {error && <div className="alert alert-danger">{error}</div>}
+            {/* //If error is truthy, it shows the div. */}
         </div>
     );
 };
