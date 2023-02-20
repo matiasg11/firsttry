@@ -40,7 +40,7 @@ class LoginForm extends Component {
     };
 
     render() {
-        const { account } = this.state;
+        const { account, errors } = this.state;
 
         return (
             <div>
@@ -51,12 +51,14 @@ class LoginForm extends Component {
                         value={account.username}
                         label="Username"
                         onChange={this.handleChange}
+                        error={errors.username}
                     />
                     <Input
                         name="password"
                         value={account.password}
                         label="Password"
                         onChange={this.handleChange}
+                        error={errors.password}
                     />
                     <button className="btn btn-primary">Login</button>
                 </form>
