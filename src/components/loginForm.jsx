@@ -25,14 +25,6 @@ class LoginForm extends Form {
                 <form onSubmit={this.handleSubmit}>
                     {this.renderInput("username", "Username")}
                     {this.renderInput("password", "Password", "password")}
-                    {/* 
-                    <Input
-                        name="password"
-                        value={data.password}
-                        label="Password"
-                        onChange={this.handleChange}
-                        error={errors.password}
-                    /> */}
                     {this.renderButton("Login")}
                 </form>
             </div>
