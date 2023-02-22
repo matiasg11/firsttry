@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import Input from "./common/input";
 
 class LoginForm extends Form {
     state = {
@@ -25,7 +24,7 @@ class LoginForm extends Form {
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit}>
                     {this.renderInput("username", "Username")}
-                    {this.renderInput("password", "Password")}
+                    {this.renderInput("password", "Password", "password")}
                     {/* 
                     <Input
                         name="password"
