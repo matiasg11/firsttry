@@ -7,6 +7,7 @@ import Movies from "./components/movies";
 import NavBar from "./components/navbar";
 import NotFound from "./components/notFound";
 import LoginForm from "./components/loginForm";
+import Register from "./components/register";
 import "./App.css";
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route path="/movies" component={Movies}></Route>
                         <Route path="/rentals" component={Rentals}></Route>
                         <Route path="/customers" component={Customers}></Route>
+                        <Route path="/register" component={Register}></Route>
                         <Route path="/not-found" component={NotFound}></Route>
                         <Redirect from="/" exact to="/movies" />
                         <Redirect to="/not-found" replace={true} />
