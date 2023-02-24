@@ -6,12 +6,18 @@ import { getGenres } from "../services/fakeGenreService";
 
 class MovieForm extends Form {
     state = {
-        data: { title: "", genre: "", numberInStock: "", dailyRentalRate: "" },
+        data: {
+            title: "",
+            genreId: "",
+            numberInStock: "",
+            dailyRentalRate: "",
+        },
         errors: {},
         genres: [],
     };
 
     schema = {
+        _id: Joi.string(),
         title: Joi.string().required().label("Title"),
         genreId: Joi.string().required().label("Genre"),
         numberInStock: Joi.number()
@@ -23,6 +29,7 @@ class MovieForm extends Form {
     };
 
     doSubmit = () => {
+        saveMovie(this.state.data);
         //Call the server and then redirect the user to another place
         console.log("Submitted");
     };
@@ -32,7 +39,11 @@ class MovieForm extends Form {
         this.setState({ genres });
 
         const movieId = this.props.match.params.id;
-        if (movieId === "new") return;
+        if (movieId === "new") {
+            let id = String(Math.random() * 10 ** 16);
+            console.log(id);
+            return id;
+        }
 
         const movie = getMovie(movieId);
         if (!movie) return this.props.history.replace("/not-found");
