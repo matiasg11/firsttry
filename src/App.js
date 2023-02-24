@@ -18,7 +18,6 @@ class App extends Component {
                 <main className="container">
                     <Switch>
                         <Route path="/login" component={LoginForm}></Route>
-                        {/* <Route path="/movies/new" component={MovieForm}></Route> */}
                         <Route path="/movies/:id" component={MovieForm}></Route>
                         <Route path="/movies" component={Movies}></Route>
                         <Route path="/rentals" component={Rentals}></Route>
@@ -33,6 +32,11 @@ class App extends Component {
         );
     }
 }
+
+{
+    /* <Route path="/movies/new" component={MovieForm}></Route> */
+}
+
 //Now we start with routing
 //Add a NavLink componetn with Movies, Customers and Rentals
 //Customers and Rentals must only show a title
