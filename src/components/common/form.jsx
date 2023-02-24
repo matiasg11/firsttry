@@ -19,40 +19,17 @@ class Form extends Component {
         return errors;
     };
 
-    // console.log(result);
-    // const errors = {};
-
-    // const { data } = this.state;
-
-    // if (data.username.trim() === "") {
-    //     errors.username = "Username is required";
-    // }
-
-    // if (data.password.trim() === "") {
-    //     errors.password = "Password is required";
-    // }
-    // return Object.keys(errors).length === 0 ? null : errors;
-
     validateProperty = ({ name, value }) => {
         const obj = { [name]: value };
         const schema = { [name]: this.schema[name] };
         const { error } = Joi.validate(obj, schema);
-
         return error ? error.details[0].message : null;
-
-        // if (name === "username") {
-        //     if (value.trim() === "") return "Username is required.";
-        // }
-        // if (name === "password") {
-        //     if (value.trim() === "") return "Password is required.";
-        // }
     };
 
     handleSubmit = (e) => {
-        e.preventDefault(); //Prevents the default behavior which in this case is the submission of the form
+        e.preventDefault();
 
         const errors = this.validate();
-        console.log(errors);
         this.setState({ errors: errors || {} });
         if (errors) return;
 
@@ -67,6 +44,7 @@ class Form extends Component {
 
         const data = { ...this.state.data };
         data[input.name] = input.value;
+
         this.setState({ data, errors });
     };
 
@@ -75,21 +53,6 @@ class Form extends Component {
             <button disabled={this.validate()} className="btn btn-primary">
                 {label}
             </button>
-        );
-    }
-
-    renderInput(name, label, type = "text") {
-        const { data, errors } = this.state;
-
-        return (
-            <Input
-                type={type}
-                name={name}
-                value={data[name]}
-                label={label}
-                onChange={this.handleChange}
-                error={errors[name]}
-            />
         );
     }
 
@@ -102,6 +65,21 @@ class Form extends Component {
                 value={data[name]}
                 label={label}
                 options={options}
+                onChange={this.handleChange}
+                error={errors[name]}
+            />
+        );
+    }
+
+    renderInput(name, label, type = "text") {
+        const { data, errors } = this.state;
+
+        return (
+            <Input
+                type={type}
+                name={name}
+                value={data[name]}
+                label={label}
                 onChange={this.handleChange}
                 error={errors[name]}
             />
