@@ -7,6 +7,7 @@ import { paginate } from "../utilities/paginate";
 import { getGenres } from "../services/fakeGenreService";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import SearchBox from "./common/searchBox";
 
 class Movies extends Component {
     state = {
@@ -14,6 +15,7 @@ class Movies extends Component {
         currentPage: 1,
         pageSize: 4,
         genres: [],
+        searchQuery: "",
         sortColumn: { path: "title", order: "asc" },
     };
 
@@ -69,7 +71,19 @@ class Movies extends Component {
 
     handleGenreSelect = (genre) => {
         console.log(genre);
-        this.setState({ selectedGenre: genre, currentPage: 1 });
+        this.setState({
+            selectedGenre: genre,
+            searchQuery: "",
+            currentPage: 1,
+        });
+    };
+
+    handleSearch = (query) => {
+        this.setState({
+            searchQuery: query,
+            selectedGenre: null,
+            currentPage: 1,
+        });
     };
 
     render() {
@@ -115,6 +129,10 @@ class Movies extends Component {
                         {filtered.length} movie
                         {filtered.length > 1 ? "s" : ""} in the database.
                     </p>
+                    <SearchBox
+                        value={searchQuery}
+                        onChange={this.handleSearch}
+                    />
                     <Link
                         to="/movies/new"
                         className="btn btn-primary"

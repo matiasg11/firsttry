@@ -33,9 +33,7 @@ class App extends Component {
     }
 }
 
-{
-    /* <Route path="/movies/new" component={MovieForm}></Route> */
-}
+//* <Route path="/movies/new" component={MovieForm}></Route> */
 
 //Now we start with routing
 //Add a NavLink componetn with Movies, Customers and Rentals
