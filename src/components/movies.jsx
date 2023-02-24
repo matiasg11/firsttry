@@ -13,9 +13,9 @@ class Movies extends Component {
     state = {
         movies: [],
         currentPage: 1,
-        pageSize: 4,
-        genres: [],
+        pageSize: 3,
         searchQuery: "",
+        selectedGenre: null,
         sortColumn: { path: "title", order: "asc" },
     };
 
@@ -86,11 +86,23 @@ class Movies extends Component {
         });
     };
 
+    getPagedData = () => {
+        const {
+            pageSize,
+            currentPage,
+            sortColumn,
+            selectedGenre,
+            searchQuery,
+            movies: allMovies,
+        } = this.state;
+    };
+
     render() {
         const {
             pageSize,
             currentPage,
             movies: allMovies,
+            searchQuery,
             selectedGenre,
             sortColumn,
         } = this.state;
@@ -98,11 +110,15 @@ class Movies extends Component {
         if (this.state.movies.length === 0)
             return <p>There are no movies here!</p>;
 
-        //First: Filter
-        const filtered =
-            selectedGenre && selectedGenre._id
-                ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
-                : allMovies;
+        let filtered = allMovies;
+        if (searchQuery)
+            filtered = allMovies.filter((m) =>
+                m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+            );
+        else if (selectedGenre && selectedGenre._id)
+            filtered = allMovies.filter(
+                (m) => m.genre._id === selectedGenre._id
+            );
         //Second: sort
         const sorted = _.orderBy(
             filtered,
