@@ -43,6 +43,7 @@ class App extends Component {
         const posts = [...this.state.posts];
         //Look for the index of the post to be deleted
         const index = posts.indexOf(post);
+        //Remove the post from the array at that position
         posts.splice(index, 1);
         this.setState({ posts });
         console.log("Delete", post);
