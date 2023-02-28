@@ -39,6 +39,7 @@ class App extends Component {
         //Save the original array of posts in case it fails
         const originalPosts = this.state.posts;
 
+        //Create a posts array and delete the corresponding element
         const posts = [...this.state.posts];
         const index = posts.indexOf(post);
         posts.splice(index, 1);
