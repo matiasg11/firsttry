@@ -50,6 +50,8 @@ class App extends Component {
         console.log("Delete", post);
 
         try {
+            //Optimistic approach. Serverside code happens after the frontside code
+            //Assumes promises will likely be fulfilled
             await axios.delete(apiEndpoint + "/" + post.id, post);
         } catch (ex) {
             alert("Something failed while deleting the post!");
