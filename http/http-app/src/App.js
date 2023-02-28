@@ -24,12 +24,32 @@ class App extends Component {
         this.setState({ posts });
     };
 
-    handleUpdate = (post) => {
-        console.log("Update", post);
+    handleUpdate = async (post) => {
+        post.title = "UPDATED";
+        await axios.put(apiEndpoint + "/" + post.id, post);
+        //axios.patch(apiEndpoint + "/" + post.id, {title:post.title})
+        const posts = [...this.state.posts];
+        const index = posts.indexOf(post);
+        posts[index] = { ...post };
+        this.setState({ posts });
+        console.log(post);
     };
 
-    handleDelete = (post) => {
+    handleDelete = async (post) => {
+        const originalPosts = this.state.posts;
+
+        const posts = [...this.state.posts];
+        const index = posts.indexOf(post);
+        posts.splice(index, 1);
+        this.setState({ posts });
         console.log("Delete", post);
+
+        try {
+            await axios.delete(apiEndpoint + "/" + post.id, post);
+        } catch (ex) {
+            alert("Something failed while deleting the post!");
+            this.setState({ posts: originalPosts });
+        }
     };
 
     render() {
