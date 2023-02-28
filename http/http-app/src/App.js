@@ -11,8 +11,8 @@ class App extends Component {
 
     async componentDidMount() {
         const { data: posts } = await axios.get(apiEndpoint);
-        //Pending => success ? Resolved : Rejected
         this.setState({ posts });
+        //Pending => success ? Resolved : Rejected
     }
 
     handleAdd = async () => {
