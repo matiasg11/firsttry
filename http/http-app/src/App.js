@@ -54,6 +54,7 @@ class App extends Component {
             //Assumes promises will likely be fulfilled
             await axios.delete(apiEndpoint + "/" + post.id, post);
         } catch (ex) {
+            //If the promise fails, alert the error and restore the original posts array
             alert("Something failed while deleting the post!");
             this.setState({ posts: originalPosts });
         }
