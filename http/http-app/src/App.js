@@ -36,6 +36,7 @@ class App extends Component {
     };
 
     handleDelete = async (post) => {
+        //Save the original array of posts in case it fails
         const originalPosts = this.state.posts;
 
         const posts = [...this.state.posts];
